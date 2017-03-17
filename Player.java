@@ -16,15 +16,28 @@ public class Player extends PokemonTrainer
         return money;
     }
     // villager
-    private void receiveMoney(String npcName)
+    private void receiveMoney1(String npcName)
     {
     	Random random = new Random();
         int temp = random.nextInt(30);
     	money += temp;
         System.out.println();
         System.out.println(npcName + " : ");
-        System.out.println("    [You had better take this ...]");
-        System.out.println("    [Have a nice day !]");
+        System.out.println("    [ You had better take this ... ]");
+        System.out.println("    [ Have a nice day ! ]");
+        System.out.println();
+        System.out.println("<<< { [$" + temp + "] get! }");
+    }
+    // billionare
+    private void receiveMoney2(String npcName)
+    {
+        Random random = new Random();
+        int temp = random.nextInt(500) * 1000;
+        money += temp;
+        System.out.println();
+        System.out.println(npcName + " : ");
+        System.out.println("    [ ~ With charity and compassion ~ ]");
+        System.out.println("    [ Byeee. Miserable~~ ]");
         System.out.println();
         System.out.println("<<< { [$" + temp + "] get! }");
     }
@@ -72,6 +85,7 @@ public class Player extends PokemonTrainer
                 System.out.println();
             }
             if (choice == 1) {
+                stdin.nextLine();
                 System.out.println(">>> " + firstATK.getName() + " used " + firstATK.getMove() + " !!");
                 secondATK.getHurt(firstATK.getATK());
                 System.out.println("{ " + secondATK.getName() + " receives " + (int)firstATK.getATK() + " damage. }");
@@ -95,8 +109,11 @@ public class Player extends PokemonTrainer
     		case "talk" :
     			//
     			switch (npc.getJob()) {
+                    case "Billionare" :
+                        receiveMoney2(npc.getName());
+                        break;
     				case "Villager" :
-    					receiveMoney(npc.getName());
+    					receiveMoney1(npc.getName());
     					break;
     				case "Nurse" :
     					pokemonData.healHP();
