@@ -28,6 +28,7 @@ public class Main
             System.out.print(">>> ");
             while ( ( isQuit = morris.react(curNpc) ) == 2);
         }
+        System.out.println("\n====================");
         System.out.println("Game over ...");
         System.out.println("You have $" + morris.getMoney() + " money.");
     }
